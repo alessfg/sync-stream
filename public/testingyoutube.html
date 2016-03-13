@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/contact.css" rel="stylesheet">
+    <link href="css/chat.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+
+
+<script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+
+    var id = document.getElementById('youtubeID').value;
+
+    function onYouTubeIframeAPIReady() {
+    }
+
+    function createPlayer(id) {
+        player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: id,
+            events: {
+                'onReady':  onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var done = false;
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+            done = true;
+        }
+        var status = player.getPlayerState();
+        var time = player.getCurrentTime();
+        console.log(a);
+       //alert('something happened');
+        return event.data;
+    }
+
+    function resumePlayer() {
+        player.playVideo();
+    }
+
+    function pausePlayer() {
+        player.pauseVideo();
+    }
+
+</script>
+
+<div class="container" style="padding-top:100px">
+    <div class="row">
+
+        <!-- USERS -->
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading c-list">
+                    <span class="title">Users</span>
+                </div>
+
+                <ul class="list-group" id="contact-list">
+                    <li class="list-group-item">
+                        <div class="col-xs-12 col-sm-3">
+                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <span class="name">Scott Stevens</span><br/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="col-xs-12 col-sm-3">
+                            <img src="http://api.randomuser.me/portraits/men/97.jpg" alt="Seth Frazier" class="img-responsive img-circle" />
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <span class="name">Seth Frazier</span><br/>
+                            <span class="visible-xs"> <span class="text-muted">7396 E North St</span><br/></span>
+                            <span class="visible-xs"> <span class="text-muted">(560) 180-4143</span><br/></span>
+                            <span class="fa fa-comments text-muted c-info" data-toggle="tooltip" title="seth.frazier@example.com"></span>
+                            <span class="visible-xs"> <span class="text-muted">seth.frazier@example.com</span><br/></span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Youtube Player -->
+        <div class="col-md-6">
+            <div class="embed-responsive embed-responsive-16by9">
+                <div id="player"></div>
+            </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <ul class="chat" style="list-style-type: none; margin: 0; padding: 0">
+                        <li class="clearfix" style="border-bottom: 1px dotted #B3A9A9;">
+                            <div class="chat-body clearfix">
+                                <span class="time">[05:08:28]</span> <strong style="color:red" class="primary-font">SnoUweR</strong>:
+                                    <span>
+                                        Ls
+                                    </span>
+                            </div>
+                        </li>
+                        <li class="clearfix" style="border-bottom: 1px dotted #B3A9A9">
+                            <div class="chat-body clearfix">
+                                <span class="time">[05:08:28]</span> <strong style="color:red" >SnoUweR</strong>:
+                                    <span>
+                                        Ls
+                                    </span>
+                            </div>
+                        </li>
+                        <li class="clearfix" style="border-bottom: 1px dotted #B3A9A9">
+                            <div class="chat-body clearfix">
+                                <span class="time">[05:08:28]</span> <strong style="color:red" class="primary-font">SnoUweR</strong>:
+                                    <span>
+                                        Ls
+                                    </span>
+                            </div>
+                        </li>
+                        <li class="clearfix" style="border-bottom: 1px dotted #B3A9A9">
+                            <div class="chat-body clearfix">
+                                <span class="time">[05:08:28]</span> <strong style="color:red" class="primary-font">SnoUweR</strong>:
+                                    <span>
+                                        Ls
+                                    </span>
+                            </div>
+                        </li>
+                        <li class="clearfix" style="border-bottom: 1px dotted #B3A9A9">
+                            <div class="chat-body clearfix">
+                                <span class="time">[05:08:28]</span> <strong style="color:red" class="primary-font">SnoUweR</strong>:
+                                    <span>
+                                        Ls
+                                    </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    Send</button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <form class="col-md-4 col-md-offset-4 text-center" style="padding-top:25px">
+             <input id="youtubeID" type="text">
+             <button id="submit" onclick="createPlayer(document.getElementById('youtubeID').value);return false">Search ID</button>
+         </form> -->
+
+        <form class="col-md-4 col-md-offset-4 text-center" role="search" style="padding-top:10px">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="youtubeID">
+                <div class="input-group-btn">
+                    <button class="btn btn-danger" type="submit" onclick="createPlayer(document.getElementById('youtubeID').value);return false"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

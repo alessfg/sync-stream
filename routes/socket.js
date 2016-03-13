@@ -1,4 +1,7 @@
 // Keep track of which names are used so that there are no duplicates
+var msgTime = 0;
+var url;
+
 var userNames = (function () {
   var names = {};
 
@@ -53,12 +56,14 @@ module.exports = function (socket) {
   var name = userNames.getGuestName();
 
   // send the new user their name and a list of users
-  socket.emit('init', {
-    name: name,
-    users: userNames.get()
+  socket.on('init', function() {
+    socket.emit('init', {
+      name: name,
+      users: userNames.get()
+    });
   });
 
-  // notify other clients that a new user has joined
+  // notify other sockets that a new user has joined
   socket.broadcast.emit('user:join', {
     name: name
   });
@@ -97,4 +102,25 @@ module.exports = function (socket) {
     });
     userNames.free(name);
   });
+
+  socket.on('video:play', function(t) {
+    if (Date.now() - msgTime > 500) {
+      socket.broadcast.emit('video:play', t);
+    }
+    console.log(Date.now() - msgTime);
+    msgTime = Date.now();
+  });
+
+  socket.on('video:pause', function(t) {
+    if (Date.now() - msgTime > 500) {
+      socket.broadcast.emit('video:pause', t);
+    }
+    console.log(Date.now() - msgTime);
+    msgTime = Date.now();
+  });
+
+  socket.on('video:get_id', function() {
+    socket.emit('video:set_id', url);
+  })
+
 };

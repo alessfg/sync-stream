@@ -1,0 +1,8 @@
+.newsession {
+	padding: 20px 0;
+}
+
+input[type=button], input[type=submit], input[type=reset]:focus {
+  display: none;
+}
+
