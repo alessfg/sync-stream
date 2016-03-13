@@ -43,6 +43,7 @@ input[type=text]:focus {
 
 input[type=button], input[type=submit], input[type=reset]:focus {
   outline: none;
+  margin-top:15px;
 }
 
 code {
@@ -280,7 +281,7 @@ hr.small {
 /* Footer */
 
 footer {
-    padding: 100px 0;
+    padding: 0px 0;
     margin: 0 auto;
     text-align: center;
 }

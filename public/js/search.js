@@ -22,8 +22,8 @@ var SearchBox = React.createClass({
 		console.log( "video id = ", video_data.video_id);
 
 		var href = window.location.href;
-		var href = href.split('=');
-		window.location = href[0] + "=" + video_data.video_id; 
+		var href = href.split('/');
+		window.location = href[0] + '//' + href[2] + "/vroom=" + video_data.video_id; 
 	   //  $.ajax({
 
 	   //  	// data needed 
@@ -97,6 +97,7 @@ var SearchBar = React.createClass({
 		          		onChange={this.handleUrlChange}
 		        	/>
 		        	</fieldset>
+		        	
 		        	<input type="submit" value="Start Session" className="btn btn-primary btn-lg btn-danger"/>
 	      		</form>
 	      		<Url data={this.state.video_url} />
