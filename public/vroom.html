@@ -21,7 +21,8 @@
 		    return id;
 		}
 		
-		var socket = io('/'+id());
+		// var socket = io('/'+id());
+		var socket = io.connect();
 	</script>
 	<div class="container">
 		<div id="app"></div>

@@ -30,15 +30,15 @@ if (process.env.NODE_ENV === 'development') {
 
 /* Socket.io Communication */
 var io = require('socket.io').listen(server);
-// io.sockets.on('connection', socket);
+io.sockets.on('connection', socket);
 
 
 app.get('/vroom=*', function (req, res) {
     res.sendfile('./public/vroom.html');
     var name = req.url.split('=')[1];
     console.log(name);
-    var nsp = io.of(name);
-    nsp.on('connection', socket);
+    // var nsp = io.of(name);
+    // nsp.on('connection', socket);
 });
 
 

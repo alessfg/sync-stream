@@ -1,6 +1,5 @@
 // Keep track of which names are used so that there are no duplicates
 var msgTime = 0;
-var url;
 
 var userNames = (function () {
   var names = {};
@@ -54,9 +53,11 @@ var userNames = (function () {
 // export function for listening to the socket
 module.exports = function (socket) {
   var name = userNames.getGuestName();
+  // var name = socket.id;
   
   // send the new user their name and a list of users
   socket.on('init', function() {
+    console.log('init');
     socket.emit('init', {
       name: name,
       users: userNames.get()
@@ -70,6 +71,7 @@ module.exports = function (socket) {
 
   // broadcast a user's message to other users
   socket.on('send:message', function (data) {
+    console.log('send:message');
     socket.broadcast.emit('send:message', {
       user: name,
       text: data.text
@@ -78,6 +80,7 @@ module.exports = function (socket) {
 
   // validate a user's name change, and broadcast it on success
   socket.on('change:name', function (data, fn) {
+    console.log('change:name');
     if (userNames.claim(data.name)) {
       var oldName = name;
       userNames.free(oldName);
@@ -118,10 +121,6 @@ module.exports = function (socket) {
     // console.log(Date.now() - msgTime);
     msgTime = Date.now();
   });
-
-  socket.on('video:get_id', function() {
-    socket.emit('video:set_id', url);
-  })
   
   socket.on('url', function(url) {
     socket.broadcast.emit('url', url);

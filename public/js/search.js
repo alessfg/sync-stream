@@ -23,6 +23,7 @@ var SearchBox = React.createClass({
 
 		var href = window.location.href;
 		var href = href.split('/');
+		socket.emit('url', video_data.video_id);
 		window.location = href[0] + '//' + href[2] + "/vroom=" + video_data.video_id; 
 	   //  $.ajax({
 
