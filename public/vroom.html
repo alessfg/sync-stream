@@ -15,7 +15,13 @@
 </head>
 <body>
 	<script>
-		var socket = io.connect();
+		function id() {
+		    var s = window.location.href;
+		    id = s.substring(s.indexOf('=') + 1, s.length);
+		    return id;
+		}
+		
+		var socket = io('/'+id());
 	</script>
 	<div class="container">
 		<div id="app"></div>

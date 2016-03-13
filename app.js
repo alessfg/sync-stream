@@ -30,40 +30,18 @@ if (process.env.NODE_ENV === 'development') {
 
 /* Socket.io Communication */
 var io = require('socket.io').listen(server);
-io.sockets.on('connection', socket);
+// io.sockets.on('connection', socket);
 
-function serveIndex(req, res) {
-    return res.sendfile('./public/vroom.html');
-}
 
-app.get('/vroom=*', serveIndex);
-app.head('/vroom=*', serveIndex);
-
-app.post('/api/videos', function(req, res) {
-  fs.readFile(VIDEOS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    var videos = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
-    var newComment = {
-      id: req.body.id,
-      video_url: req.body.video_url,
-      video_id: req.body.video_id,
-    };
-    videos.push(newComment);
-    fs.writeFile(VIDEOS_FILE, JSON.stringify(videos, null, 4), function(err) {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-      res.json(videos);
-    });
-  });
+app.get('/vroom=*', function (req, res) {
+    res.sendfile('./public/vroom.html');
+    var name = req.url.split('=')[1];
+    console.log(name);
+    var nsp = io.of(name);
+    nsp.on('connection', socket);
 });
+
+
 /* Start server */
 server.listen(app.get('port'), function (){
   console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));

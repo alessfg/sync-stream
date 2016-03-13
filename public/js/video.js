@@ -11,11 +11,10 @@ $(document).ready(function() {
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 var player;
-var id;
 // var id = document.getElementById('youtubeID').value;
 function id() {
     var s = window.location.href;
-    id = s.substring(s.indexOf('=') + 1, s.length);
+    var id = s.substring(s.indexOf('=') + 1, s.length);
     return id;
 }
 
@@ -87,4 +86,10 @@ socket.on('video:play', function(time) {
     resumePlayer();
     player.seekTo(time+0.4, true);
     // console.log('get video:play', stateHistory);
+});
+
+socket.on('url', function(url) {
+    var href = window.location.href;
+	var href = href.split('/');
+	window.location = href[0] + '//' + href[2] + "/vroom=" + url; 
 });

@@ -30,7 +30,7 @@ var userNames = (function () {
   // serialize claimed names as an array
   var get = function () {
     var res = [];
-    for (user in names) {
+    for (var user in names) {
       res.push(user);
     }
 
@@ -54,7 +54,7 @@ var userNames = (function () {
 // export function for listening to the socket
 module.exports = function (socket) {
   var name = userNames.getGuestName();
-
+  
   // send the new user their name and a list of users
   socket.on('init', function() {
     socket.emit('init', {
@@ -107,7 +107,7 @@ module.exports = function (socket) {
     if (Date.now() - msgTime > 500) {
       socket.broadcast.emit('video:play', t);
     }
-    console.log(Date.now() - msgTime);
+    // console.log(Date.now() - msgTime);
     msgTime = Date.now();
   });
 
@@ -115,12 +115,16 @@ module.exports = function (socket) {
     if (Date.now() - msgTime > 500) {
       socket.broadcast.emit('video:pause', t);
     }
-    console.log(Date.now() - msgTime);
+    // console.log(Date.now() - msgTime);
     msgTime = Date.now();
   });
 
   socket.on('video:get_id', function() {
     socket.emit('video:set_id', url);
+  })
+  
+  socket.on('url', function(url) {
+    socket.broadcast.emit('url', url);
   })
 
 };
