@@ -79,12 +79,12 @@ function pausePlayer() {
 
 socket.on('video:pause', function(time) {
     pausePlayer();
-    player.seekTo(time, true);
+    player.seekTo(time+0.4, true);
     // console.log('get video:pause', stateHistory);
 });
 
 socket.on('video:play', function(time) {
     resumePlayer();
-    player.seekTo(time, true);
+    player.seekTo(time+0.4, true);
     // console.log('get video:play', stateHistory);
 });
