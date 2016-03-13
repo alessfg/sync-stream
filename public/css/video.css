@@ -6,3 +6,9 @@ input[type=button], input[type=submit], input[type=reset]:focus {
   display: none;
 }
 
+#banner {
+    background: url(../img/topBanner2.jpg) no-repeat center center scroll; 
+    background-size:100%; 
+    height:100px;
+    overflow:hidden;
+}

@@ -107,7 +107,7 @@ module.exports = function (socket) {
   });
 
   socket.on('video:play', function(t) {
-    if (Date.now() - msgTime > 500) {
+    if (Date.now() - msgTime > 600) {
       socket.broadcast.emit('video:play', t);
     }
     // console.log(Date.now() - msgTime);
@@ -115,7 +115,7 @@ module.exports = function (socket) {
   });
 
   socket.on('video:pause', function(t) {
-    if (Date.now() - msgTime > 500) {
+    if (Date.now() - msgTime > 600) {
       socket.broadcast.emit('video:pause', t);
     }
     // console.log(Date.now() - msgTime);

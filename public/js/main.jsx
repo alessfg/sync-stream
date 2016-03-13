@@ -134,8 +134,8 @@ var Message = React.createClass({
 		return (
 			<li className="clearfix" style={{borderBottom: '1px dotted #B3A9A9'}}>
                 <div className="chat-body clearfix">
-                	<span className="time">[05:08:28]</span><strong style={{color: 'red'}} className="primary-font">{this.props.user}</strong>:
-                    <span>{this.props.text}</span>
+                	<strong style={{color: 'red'}} >{this.props.user}</strong>:
+                    <span> {this.props.text}</span>
 				</div>
 			</li>
 		);
@@ -190,6 +190,7 @@ var MessageForm = React.createClass({
 		return(
 			<div className="panel-footer">
                 <div className="input-group">
+                <h5> Send Message </h5>
 					<form onSubmit={this.handleSubmit}>
 						<input 
 							id="btn-input" 
@@ -197,11 +198,8 @@ var MessageForm = React.createClass({
 							value={this.state.text}
 							onChange={this.changeHandler} 
 							className="form-control input-sm" 
-							placeholder="Type your message here..." 
+							placeholder="Type message here..." 
 						/>
-	                    <span className="input-group-btn">
-	                    <button className="btn btn-warning btn-sm" id="btn-chat">Send</button>
-	                    </span>
 					</form>
 				</div>
 			</div>
@@ -231,8 +229,12 @@ var ChangeNameForm = React.createClass({
 				<h5> Change Name </h5>
 				<form onSubmit={this.handleSubmit}>
 					<input
+						id="btn-input" 
+						type="text" 
 						onChange={this.onKey}
+						className="form-control input-sm" 
 						value={this.state.newName} 
+						placeholder="Enter new name..."
 					/>
 				</form>	
 			</div>
@@ -332,14 +334,6 @@ var ChatApp = React.createClass({
 	render() {
 		return (
 			<div>
-				<Navbar>
-			    <Navbar.Header>
-			      <Navbar.Brand>
-			        <h3>Stream Synk</h3>
-			      </Navbar.Brand>
-			      <Navbar.Toggle />
-			    </Navbar.Header>
-			  </Navbar>
 				<Grid>
 					<Row>
 		        		<Col md={3}>
@@ -366,7 +360,7 @@ var ChatApp = React.createClass({
 						</Col>
 						<Col md={6}>
 							<br />
-							<br />
+							
 							<div id="search_bar"></div>
 						</Col>
 						<Col md={3}>

@@ -23,7 +23,6 @@ var SearchBox = React.createClass({
 
 		var href = window.location.href;
 		var href = href.split('/');
-		socket.emit('url', video_data.video_id);
 		window.location = href[0] + '//' + href[2] + "/vroom=" + video_data.video_id; 
 	   //  $.ajax({
 
@@ -92,8 +91,8 @@ var SearchBar = React.createClass({
 	      			<fieldset className="form-group">
 		        	<input
 		          		type="text"
-		          		placeholder="youtube url"
-		          		className="form-control"
+		          		placeholder="Enter YouTube URL"
+		          		className="form-control input-sm"
 		          		value={this.state.video_url}
 		          		onChange={this.handleUrlChange}
 		        	/>
